@@ -5,7 +5,7 @@
 
     <div layout:fragment="content">
         
-        <section id="left_column" th:object="${product}">
+        <section id="left_column" class="col-md-9" th:object="${product}">
         
             <div id="product_content" class="product_container">
                 <h2 th:utext="*{name}"></h2>
@@ -102,12 +102,12 @@
             </div>
             
             <div id="product_main_image" th:if="*{media['primary']}">
-                <a th:href="@{*{#strings.replace(media['primary'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
-                    <img blc:src="@{*{media['primary'].url}+ '?browse'}" alt='' align="left" id="main_image" />
-                </a>
-            </div>
-            
-            <div id="product_thumbs_container">
+            	<div class="product_main_image_contain cf">
+	                <a th:href="@{*{#strings.replace(media['primary'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
+	                    <img blc:src="@{*{media['primary'].url}+ '?browse'}" alt='' align="center" id="main_image" />
+	                </a>
+                </div>
+                 <div id="product_thumbs_container" class="">
                 <ul id="product_thumbs" class="clearfix">
                     <li>
                         <a th:if="*{media['primary']}" href="javascript:;" class="zoomThumbActive" th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}+'?browse'}__'', largeimage: ''__@{*{media['primary'].url}}__'' }'}" th:attr="data-tags=*{media['primary'].tags}">
@@ -126,6 +126,9 @@
                     </li>
                 </ul>
             </div>
+            </div>
+            
+           
             
             <div class="clearfix"></div>
                 <div id="customer-reviews-container">
@@ -221,7 +224,7 @@
                 </div>          
         </section>
     
-        <section id="right_column">
+        <section id="right_column" class="col-md-3">
             <header>Featured Products</header>
             <div id="options">
                 <div class="section">

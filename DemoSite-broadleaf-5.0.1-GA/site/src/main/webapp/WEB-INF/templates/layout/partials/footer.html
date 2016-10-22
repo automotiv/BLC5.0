@@ -1,23 +1,67 @@
-<footer class="group">
-    <div id="left_content">
-        <h4><span th:utext="#{footer.delivering}">Delivering Texas Sized Heat</span></h4>
-        &copy; <span th:utext="#{footer.copyrightHC}">Copyright 2013 The Heat Clinic</span><br />
-        <a href=""><span th:utext="#{footer.privacyPolicy}">Privacy Policy</span></a>
+<footer id="footer-group">
+<div class="container">
+  <div class="footer-middle">
+	<div class="col-sm-3">
+		<div class="block">
+	<div class="block-title"><strong><span>My Account</span></strong></div>
+	<div class="block-content">
+		<ul class="links">
+			<li><i class="icon-right-dir theme-color"></i><a href="#" title="About us">About us</a></li>
+			<li><i class="icon-right-dir theme-color"></i><a href="#" title="Contact us">Contact us</a></li>
+			<li><i class="icon-right-dir theme-color"></i><a href="#" title="My account">My account</a></li>
+			<li><i class="icon-right-dir theme-color"></i><a href="#" title="Orders history">Orders history</a></li>
+			<li><i class="icon-right-dir theme-color"></i><a href="#" title="Advanced search">Advanced search</a></li>
+		</ul>
+	</div>
+</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="block">
+    <div class="block-title"><strong><span>Contact Information</span></strong></div>
+    <div class="block-content">
+        <ul class="contact-info">
+            <li><i class="icon-location"></i>	</li>
+            <li><i class="icon-phone"></i></li>
+            <li><i class="icon-mail"></i></li>
+            <li><i class="icon-clock"></i></li>
+        </ul>
     </div>
-    <div id="right_content">
-        <h4><span th:utext="#{footer.since1978}">Since Nineteen Seventy Eight</span></h4>
-        <span th:utext="#{footer.allRights}">All Rights Reserved</span>.<br />
-        <a href=""><span th:utext="#{footer.customerService}">Customer Service</span></a>
+</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="block">
+    <div class="block-title"><strong><span>Main Features</span></strong></div>
+    <div class="block-content">
+<ul class="features">
+    <li><i class="icon-ok theme-color"></i><a href="#">Super Fast Magento Theme</a></li>
+    <li><i class="icon-ok  theme-color"></i><a href="#">1st Fully working Ajax Theme</a></li>
+    <li><i class="icon-ok  theme-color"></i><a href="#">10 Unique Homepage Layouts</a></li>
+    <li><i class="icon-ok  theme-color"></i><a href="#">Powerful Admin Panel</a></li>
+    <li><i class="icon-ok  theme-color"></i><a href="#">Mobile &amp; Retina Optimized</a></li>
+</ul>
+</div>
+</div>
+	</div>
+	<div class="col-sm-3">
+				<div class="block block-subscribe">
+    <div class="block-title">
+        <strong><span>Be the First to Know</span></strong>
     </div>
-    <div id="blc_brand">
-        <a href="http://www.broadleafcommerce.com"  >
-            <img blc:src="@{/img/broadleaf-seal.png}" alt="Broadleaf Commerce" />
-            <h4><span th:utext="#{footer.branding.poweredByBLC}">Powered by Broadleaf Commerce</span></h4>
-            <br />
-        </a>
-        <p>&copy; <span th:utext="#{footer.branding.copyrightBLC}">Copyright 2013 Broadleaf Commerce</span><br /></p>
-    </div>
-
+    <form action="/" >
+        <div class="block-content newsletterSignup">
+            <p>Get all the latest information on Events  Sales and Offers. Sign up for newsletter today.</p>
+            <div class="input-box">
+                <p class="label">Enter your e-mail Address</p>
+            
+               
+                <div class="clearer"></div>
+            </div>
+        </div>
+    </form>
+    
+</div>
+	</div>
+</div>
     <div th:remove="all">
         <!--
             Include this template at the bottom of a page (automatically included by partials/footer.html
@@ -42,7 +86,9 @@
                 files="plugins.js,
                        libs/jquery.MetaData.js,
                        libs/jquery.rating.pack.js,
+                        libs/slick.min.js,
                        libs/jquery.dotdotdot-1.5.1.js" />
+                       
     
     <blc:bundle name="heatclinic.js" 
                 mapping-prefix="/js/"
@@ -52,6 +98,7 @@
                        checkoutOperations.js,
                        globalOnReady.js,
                        manageAccountOperations.js,
-                       reviewOperations.js" />
-
+                       reviewOperations.js,
+                       bootstrap.js" />
+</div>
 </footer>

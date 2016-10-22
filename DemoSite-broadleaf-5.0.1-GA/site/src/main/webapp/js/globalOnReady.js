@@ -13,7 +13,14 @@ $(function(){
             allowPageScroll     : "vertical",
             threshold           : 40            
     }
+    //initialize slick on home page
+    $('.home-carousel').slick({
+    	  dots: true,
+    	  infinite: false,
+    	  speed: 300,
 
+          mobileFirst: true
+    	});	
     // Update the locale that has been selected
     HC.updateLocaleSelection();
 
