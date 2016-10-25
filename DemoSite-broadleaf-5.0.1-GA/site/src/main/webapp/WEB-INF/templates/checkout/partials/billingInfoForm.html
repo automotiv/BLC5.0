@@ -44,91 +44,103 @@
              th:classappend="${('SAVED' == sectionDTO.state.type or 'INACTIVE' == sectionDTO.state.type) and !#fields.hasErrors('*')} ? 'hide'">
 
             <input type="hidden" name="address.isoCountryAlpha2" value="US" />
+			<div class="grid">
+	            <div class="form50 grid_item">
+	                <label for="firstName"><span th:utext="#{cart.firstName}">First Name</span></label>
+	                <span class="error" th:if="${#fields.hasErrors('address.firstName')}" th:errors="*{address.firstName}"></span>
+	                <input type="text" th:field="*{address.firstName}"
+	                       class="field100 required cloneable"
+	                       th:classappend="${#fields.hasErrors('address.firstName')}? 'fieldError'" />
+	            </div>
+	
+	            <div class="form50 grid_item">
+	                <label for="lastName"><span th:utext="#{cart.lastName}">Last Name</span></label>
+	                <span class="error" th:if="${#fields.hasErrors('address.lastName')}" th:errors="*{address.lastName}"></span>
+	                <input type="text"
+	                       th:field="*{address.lastName}"
+	                       class="field100 required cloneable"
+	                       th:classappend="${#fields.hasErrors('address.lastName')}? 'fieldError'" />
+	            </div>
+			</div>
+			<div class="grid">
+	            <div class="form50 grid_item">
+	                <label for="address1"><span th:utext="#{cart.address}">Address</span></label>
+	                <span class="error" th:if="${#fields.hasErrors('address.addressLine1')}" th:errors="*{address.addressLine1}"></span>
+	                <input type="text"
+	                       th:field="*{address.addressLine1}"
+	                       class="field100 required cloneable"
+	                       th:classappend="${#fields.hasErrors('address.addressLine1')}? 'fieldError'" />
+	            </div>
+	
+	            <div class="form50 grid_item">
+	                <label for="address2"><span th:utext="#{cart.address2}">Address 2</span></label>
+	                <span class="error_spacer" th:if="${#fields.hasErrors('address.addressLine1')}">error</span>
+	                <input type="text"
+	                       th:field="*{address.addressLine2}" class="field100 cloneable" />
+	            </div>
+			</div>
+            <div class="grid">
+				
+	            
+	            
+	            <div class="form50 grid_item" >
+	            	<div class="grid">
+		            	<div class="form50 grid_item">
+			                <label for="city"><span th:utext="#{cart.cityState}">City </span></label>
+			                <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
+			                <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.stateProvinceRegion')}"/>
+			                <span class="error" th:if="${#fields.hasErrors('address.stateProvinceRegion')}" th:errors="*{address.stateProvinceRegion}"></span>
+			                <input type="text"
+			                       th:field="*{address.city}"
+			                       class="field100 required cloneable"
+			                       th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" />
+						</div>
+						<div class="form50 grid_item">
+							<label for="state"><span th:utext="#{cart.cityState}">State</span></label>
+			                <select id="state"  th:field="*{address.stateProvinceRegion}" size="1" style="width: 100%;"
+			                        class="required cloneable"
+			                        th:classappend="${#fields.hasErrors('address.stateProvinceRegion')}? 'fieldError'">
+			                    <option value="">--</option>
+			                    <option th:each="state : ${states}"
+			                            th:value="${state.abbreviation}"
+			                            th:utext="${state.abbreviation}">
+			
+			                     </option>
+			                </select>
+			            </div>
+			        </div>
+	            </div>
 
-            <div class="form30">
-                <label for="firstName"><span th:utext="#{cart.firstName}">First Name</span></label>
-                <span class="error" th:if="${#fields.hasErrors('address.firstName')}" th:errors="*{address.firstName}"></span>
-                <input type="text" th:field="*{address.firstName}"
-                       class="field30 required cloneable"
-                       th:classappend="${#fields.hasErrors('address.firstName')}? 'fieldError'" />
-            </div>
-
-            <div class="form30 margin20">
-                <label for="lastName"><span th:utext="#{cart.lastName}">Last Name</span></label>
-                <span class="error" th:if="${#fields.hasErrors('address.lastName')}" th:errors="*{address.lastName}"></span>
-                <input type="text"
-                       th:field="*{address.lastName}"
-                       class="field30 required cloneable"
-                       th:classappend="${#fields.hasErrors('address.lastName')}? 'fieldError'" />
-            </div>
-
-            <div class="form30 margin20">
-                <label for="phone"><span th:utext="#{cart.phone}">Phone</span></label>
-                <span class="error_spacer" th:if="${#fields.hasErrors('address.firstName') or #fields.hasErrors('address.lastName')}">error</span>
-                <input type="tel"
-                       id="address.phonePrimary"
-                       name="address.phonePrimary"
-                       th:if="*{address.phonePrimary!=null}"
-                       th:value="*{address.phonePrimary.phoneNumber}"
-                       class="field30 cloneable" />
-                <input type="tel"
-                       id="address.phonePrimary"
-                       name="address.phonePrimary"
-                       th:if="*{address.phonePrimary==null}" class="field30 cloneable" />
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="form50">
-                <label for="address1"><span th:utext="#{cart.address}">Address</span></label>
-                <span class="error" th:if="${#fields.hasErrors('address.addressLine1')}" th:errors="*{address.addressLine1}"></span>
-                <input type="text"
-                       th:field="*{address.addressLine1}"
-                       class="field50 required cloneable"
-                       th:classappend="${#fields.hasErrors('address.addressLine1')}? 'fieldError'" />
-            </div>
-
-            <div class="form50 margin20">
-                <label for="address2"><span th:utext="#{cart.address2}">Address 2</span></label>
-                <span class="error_spacer" th:if="${#fields.hasErrors('address.addressLine1')}">error</span>
-                <input type="text"
-                       th:field="*{address.addressLine2}" class="field50 cloneable" />
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="form30">
-                <label for="city"><span th:utext="#{cart.cityState}">City / State</span></label>
-                <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
-                <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.stateProvinceRegion')}"/>
-                <span class="error" th:if="${#fields.hasErrors('address.stateProvinceRegion')}" th:errors="*{address.stateProvinceRegion}"></span>
-                <input type="text"
-                       th:field="*{address.city}"
-                       class="field25 required cloneable"
-                       th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" />
-
-                <select id="state" th:field="*{address.stateProvinceRegion}" size="1" style="width: 48px;"
-                        class="required cloneable"
-                        th:classappend="${#fields.hasErrors('address.stateProvinceRegion')}? 'fieldError'">
-                    <option value="">--</option>
-                    <option th:each="state : ${states}"
-                            th:value="${state.abbreviation}"
-                            th:utext="${state.abbreviation}">
-
-                     </option>
-                </select>
-            </div>
-
-            <div class="form25 margin20">
-                <label for="postal_code"><span th:utext="#{cart.postalCode}">Postal Code</span></label>
-                <span class="error" th:if="${#fields.hasErrors('address.postalCode')}" th:errors="*{address.postalCode}"></span>
-                <input type="text"
-                       th:field="*{address.postalCode}"
-                       class="field25 cloneable"
-                       th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" />
-            </div>
-
-            <div style="float:right;">
+	            <div class="form50 grid_item">
+	            	<div class="grid">
+		            	<div class="form50 grid_item">
+			                <label for="postal_code"><span th:utext="#{cart.postalCode}">Postal Code</span></label>
+			                <span class="error" th:if="${#fields.hasErrors('address.postalCode')}" th:errors="*{address.postalCode}"></span>
+			                <input type="text"
+			                       th:field="*{address.postalCode}"
+			                       class="field100 cloneable"
+			                       th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" />
+			            </div>
+						<div class="form50 grid_item">
+	           
+			                <label for="phone"><span th:utext="#{cart.phone}">Phone</span></label>
+			                <span class="error_spacer" th:if="${#fields.hasErrors('address.firstName') or #fields.hasErrors('address.lastName')}">error</span>
+			                <input type="tel"
+			                       id="address.phonePrimary"
+			                       name="address.phonePrimary"
+			                       th:if="*{address.phonePrimary!=null}"
+			                       th:value="*{address.phonePrimary.phoneNumber}"
+			                       class="field100 cloneable" />
+			                <input type="tel"
+			                       id="address.phonePrimary"
+			                       name="address.phonePrimary"
+			                       th:if="*{address.phonePrimary==null}" class="field100 cloneable" />
+			           </div>
+			        </div>
+	            </div>
+	        </div>
+			
+            <div class="billInfoSubmit">
                 <input type="submit" class="medium red" value="Save Billing" />
             </div>
 

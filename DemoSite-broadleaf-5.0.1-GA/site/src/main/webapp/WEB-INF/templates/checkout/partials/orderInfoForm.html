@@ -26,12 +26,12 @@
                 <a th:href="@{/register(successUrl='/checkout')}"><span th:utext="#{cart.registerNewAccount}">register a new account</span></a>.
             </p>
         
-            <blc:form th:object="${orderInfoForm}" th:action="@{/checkout/savedetails}" method="post" id="order_info" novalidate="novalidate">
+            <blc:form th:object="${orderInfoForm}" th:action="@{/checkout/savedetails}" method="post" id="order_info" class="form50" novalidate="novalidate">
         
-                <div class="form50">
+                <div class="emailtags">
                     <label for="emailAddress"><span th:utext="#{cart.emailAddress}">Email Address</span></label>
                     <span class="error" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></span> 
-                    <input type="text" th:field="*{emailAddress}" class="field50" th:classappend="${#fields.hasErrors('emailAddress')}? 'fieldError'" />
+                    <input type="text" th:field="*{emailAddress}" class="field100" th:classappend="${#fields.hasErrors('emailAddress')}? 'fieldError'" />
                 </div>
 
                 <div class="clearfix"></div>

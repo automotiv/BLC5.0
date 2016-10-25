@@ -12,81 +12,82 @@
     <div id="cart">
 
         <div class="cart_title"><span th:utext="#{confirmation.orderSummary}">Order Summary</span></div>
-
-        <table id="cart_products">
-            <thead>
-            <tr>
-                <th>&nbsp;</th>
-                <th align="left"><span th:utext="#{cart.item}">Item</span></th>
-                <th><span th:utext="#{cart.quantity}">Quantity</span></th>
-                <th> <span th:utext="#{cart.price}">Price</span> <span class="small" th:utext="#{cart.each}">(each)</span></th>
-                <th> <span th:utext="#{cart.totalSavings}">Total Savings</span></th>
-                <th><span th:utext="#{cart.total}">Total</span></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="item : ${order.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-                <td>
-                    <th:block th:unless="*{#lists.isEmpty(sku.productOptionValues)}" th:each="optionValue : *{sku.productOptionValues}">
-                        <img th:if="${optionValue.attributeValue == item.sku.skuMedia['primary']?.tags}" blc:src="@{*{sku.skuMedia['primary'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
-                        <img th:if="${optionValue.attributeValue == item.sku.skuMedia['alt1']?.tags}" blc:src="@{*{sku.skuMedia['alt1'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
-                        <img th:if="${optionValue.attributeValue == item.sku.skuMedia['alt2']?.tags}" blc:src="@{*{sku.skuMedia['alt2'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
-                    </th:block>
-                    <img th:if="*{#lists.isEmpty(sku.productOptionValues) and sku.skuMedia['primary'] != null}" blc:src="@{*{sku.skuMedia['primary'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
-                </td>
-                <td align="left">
-                    <a th:unless="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')}" th:href="@{*{product.url}}" th:utext="*{product.name}"></a>
-                    <a th:if="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')} and *{sku.urlKey}" th:href="@{*{product.url} + *{sku.urlKey}}" th:inline="text">
-                       [[*{sku.name}]] <span th:each="optionValue : *{sku.productOptionValues}" th:utext="${optionValue.attributeValue}"></span>
-                    </a>
-                    <a th:if="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')} and !*{sku.urlKey}" th:href="@{*{product.url}}" th:inline="text">
-                       [[*{sku.name}]] <span th:each="optionValue : *{sku.productOptionValues}" th:utext="${optionValue.attributeValue}"></span>
-                    </a>
-                    <br/>
-                <blc:product_option_display orderItem="${item}" >
-                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
-                         <li th:each="entry: ${productOptionDisplayValues}">
-                           <span  th:utext="${entry.key} + ': ' + ${entry.value}"></span>
-                         </li>
-                     </ul>
-                </blc:product_option_display>
-                </td>
-                <td align="center" th:utext="*{quantity}"></td>
-                <td align="center" blc:price="*{price}"></td>
-                <td align="center" th:if="*{adjustmentValue.zero}">---</td>
-                <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" >
-                  <span  align="center"  blc:price="*{totalAdjustmentValue}" class="promotion" ></span>
-                     <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"></div>
-                </td>
-                <td align="center" class="value" blc:price="*{totalPrice}"></td>
-            </tr>
-            </tbody>
-        </table>
-
-        <div id="cart_total" class="group">
-            <h3><span th:utext="#{confirmation.orderTotal}">Order Total</span></h3>
-            <div id="subtotal" blc:price="${order.total}"></div>
-            <table width="100%" id="total_table" border="0">
-                <tr>
-                    <td><span th:utext="#{confirmation.orderSubTotal}">Subtotal</span></td>
-                    <td blc:price="${order.subTotal}"></td>
-                </tr>
-                <tr>
-                    <td><span th:utext="#{confirmation.promotions}">Promotions</span></td>
-                    <td class="discount" th:if="${order.orderAdjustmentsValue.zero}">---</td>
-                    <td class="discount" th:unless="*{order.orderAdjustmentsValue.zero}" blc:price="${order.orderAdjustmentsValue}"></td>
-                </tr>
-                <tr>
-                    <td><span th:utext="#{confirmation.taxes}">Taxes</span></td>
-                    <td blc:price="${order.totalTax}"></td>
-                </tr>
-                <tr>
-                    <td><span th:utext="#{confirmation.shipping}">Shipping</span></td>
-                    <td blc:price="${order.totalShipping}"></td>
-                </tr>
-            </table>
-        </div>
-
+		
+	        <table id="cart_products">
+	            <thead>
+	            <tr>
+	                <th>&nbsp;</th>
+	                <th align="left"><span th:utext="#{cart.item}">Item</span></th>
+	                <th><span th:utext="#{cart.quantity}">Quantity</span></th>
+	                <th> <span th:utext="#{cart.price}">Price</span> <span class="small" th:utext="#{cart.each}">(each)</span></th>
+	                <th> <span th:utext="#{cart.totalSavings}">Total Savings</span></th>
+	                <th><span th:utext="#{cart.total}">Total</span></th>
+	            </tr>
+	            </thead>
+	            <tbody>
+	            <tr th:each="item : ${order.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
+	                <td>
+	                    <th:block th:unless="*{#lists.isEmpty(sku.productOptionValues)}" th:each="optionValue : *{sku.productOptionValues}">
+	                        <img th:if="${optionValue.attributeValue == item.sku.skuMedia['primary']?.tags}" blc:src="@{*{sku.skuMedia['primary'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
+	                        <img th:if="${optionValue.attributeValue == item.sku.skuMedia['alt1']?.tags}" blc:src="@{*{sku.skuMedia['alt1'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
+	                        <img th:if="${optionValue.attributeValue == item.sku.skuMedia['alt2']?.tags}" blc:src="@{*{sku.skuMedia['alt2'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
+	                    </th:block>
+	                    <img th:if="*{#lists.isEmpty(sku.productOptionValues) and sku.skuMedia['primary'] != null}" blc:src="@{*{sku.skuMedia['primary'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
+	                </td>
+	                <td align="left">
+	                    <a th:unless="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')}" th:href="@{*{product.url}}" th:utext="*{product.name}"></a>
+	                    <a th:if="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')} and *{sku.urlKey}" th:href="@{*{product.url} + *{sku.urlKey}}" th:inline="text">
+	                       [[*{sku.name}]] <span th:each="optionValue : *{sku.productOptionValues}" th:utext="${optionValue.attributeValue}"></span>
+	                    </a>
+	                    <a th:if="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')} and !*{sku.urlKey}" th:href="@{*{product.url}}" th:inline="text">
+	                       [[*{sku.name}]] <span th:each="optionValue : *{sku.productOptionValues}" th:utext="${optionValue.attributeValue}"></span>
+	                    </a>
+	                    <br/>
+	                <blc:product_option_display orderItem="${item}" >
+	                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+	                         <li th:each="entry: ${productOptionDisplayValues}">
+	                           <span  th:utext="${entry.key} + ': ' + ${entry.value}"></span>
+	                         </li>
+	                     </ul>
+	                </blc:product_option_display>
+	                </td>
+	                <td align="center" th:utext="*{quantity}"></td>
+	                <td align="center" blc:price="*{price}"></td>
+	                <td align="center" th:if="*{adjustmentValue.zero}">---</td>
+	                <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" >
+	                  <span  align="center"  blc:price="*{totalAdjustmentValue}" class="promotion" ></span>
+	                     <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"></div>
+	                </td>
+	                <td align="center" class="value" blc:price="*{totalPrice}"></td>
+	            </tr>
+	            </tbody>
+	        </table>
+		
+	        <div id="cart_total" class="group">
+	            <h3><span th:utext="#{confirmation.orderTotal}">Order Total</span></h3>
+	            <div id="subtotal" blc:price="${order.total}"></div>
+	            <div class="checkoutconfirm-wrapper">
+		            <table width="100%" id="total_table" border="0">
+		                <tr>
+		                    <td><span th:utext="#{confirmation.orderSubTotal}">Subtotal</span></td>
+		                    <td blc:price="${order.subTotal}"></td>
+		                </tr>
+		                <tr>
+		                    <td><span th:utext="#{confirmation.promotions}">Promotions</span></td>
+		                    <td class="discount" th:if="${order.orderAdjustmentsValue.zero}">---</td>
+		                    <td class="discount" th:unless="*{order.orderAdjustmentsValue.zero}" blc:price="${order.orderAdjustmentsValue}"></td>
+		                </tr>
+		                <tr>
+		                    <td><span th:utext="#{confirmation.taxes}">Taxes</span></td>
+		                    <td blc:price="${order.totalTax}"></td>
+		                </tr>
+		                <tr>
+		                    <td><span th:utext="#{confirmation.shipping}">Shipping</span></td>
+		                    <td blc:price="${order.totalShipping}"></td>
+		                </tr>
+		            </table>
+	       		 </div>
+			</div>
         <div class="cart_title"><span th:utext="#{confirmation.shipping.info}">Shipping Information</span></div>
 
         <div class="clearfix"></div>
