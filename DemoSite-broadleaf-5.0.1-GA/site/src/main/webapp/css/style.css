@@ -715,6 +715,8 @@ header {
 
 #header_content #logo, #header_content_checkout #logo {
 	float: left;
+	width:371px;
+	margin-left:-137px;
 }
 
 #header_content #logo h1, #header_content_checkout #logo h1 {
@@ -732,7 +734,7 @@ header {
 }
 
 #header_content #search {
-	    float: left;
+	    float: right;
 	        width: 50%;
     position: relative;
 }
@@ -2652,11 +2654,7 @@ button[disabled]:hover, input[disabled]:hover {
 		margin: 20px 0 0;
 		padding: 0;
 	}
-	#logo {
-		width: 300px;
-		margin: 10px;
-		float: left;
-	}
+	
 	 #cart_info {
 		width: 300px;
 		padding: 5px 10px;
