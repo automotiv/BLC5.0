@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+        <groupId>co.altruix</groupId>
+        <artifactId>sptools</artifactId>
+        <packaging>war</packaging>
+        <version>1.0</version>
+        <name>Vaadin Web Application</name>
+         <build>    
+            <plugins>
+            
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    
+
+                    <configuration>
+                      <ignorePackaging default-value="false">true</ignorePackaging>
+                                            
+                      <password>admin</password>
+                      <path default-value="/${project.artifactId}">/sptools</path>
+                      <server>dev-tomcat</server>
+                      
+                      
+                      <url default-value="http://localhost:8080/manager/text">http://localhost:8080/manager/text</url>
+                      <username>admin</username>
+                      <version default-value="${plugin.version}"/>
+                      <warFile default-value="/home/prakash/apps/code/DemoSite-broadleaf-5.0.1-GA/site/target/mycompany.war"/>
+                      
+                    </configuration>
+                </plugin>
+            </plugins>
+        
+        </build>
+ 
+<dependencies>
+        <dependency>
+  <groupId>org.apache.tomcat.maven</groupId>
+  <artifactId>tomcat7-maven-plugin</artifactId>
+  <version>2.2</version>
+  <type>maven-plugin</type>
+</dependency>
+
+</dependencies>
+    
+</project>
