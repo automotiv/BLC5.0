@@ -67,7 +67,9 @@ public class ReadDBInsertIntoXml {
 			Statement createStatement = connection.createStatement();
 			ResultSet executeQuery = createStatement.executeQuery("select * from " + tableName);
 			ResultSetMetaData metaData = executeQuery.getMetaData();
-			Object[] object = new Object[columnNames.size() * 2];
+			int k = columnNames.size() * 2;
+			Object[] object = new Object[1000];
+			System.out.println("Initial Lenght " + object.length);
 			int i = 0;
 			
 			while (i < metaData.getColumnCount()) {
