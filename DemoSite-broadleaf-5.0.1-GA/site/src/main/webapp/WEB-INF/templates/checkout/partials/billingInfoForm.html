@@ -86,7 +86,7 @@
 	            <div class="form50 grid_item" >
 	            	<div class="grid">
 		            	<div class="form50 grid_item">
-			                <label for="city"><span th:utext="#{cart.cityState}">City </span></label>
+			                <label for="city"><span th:utext="#{cart.city}">City </span></label>
 			                <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
 			                <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.stateProvinceRegion')}"/>
 			                <span class="error" th:if="${#fields.hasErrors('address.stateProvinceRegion')}" th:errors="*{address.stateProvinceRegion}"></span>
@@ -95,19 +95,6 @@
 			                       class="field100 required cloneable"
 			                       th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" />
 						</div>
-						<div class="form50 grid_item">
-							<label for="state"><span th:utext="#{cart.cityState}">State</span></label>
-			                <select id="state"  th:field="*{address.stateProvinceRegion}" size="1" style="width: 100%;"
-			                        class="required cloneable"
-			                        th:classappend="${#fields.hasErrors('address.stateProvinceRegion')}? 'fieldError'">
-			                    <option value="">--</option>
-			                    <option th:each="state : ${states}"
-			                            th:value="${state.abbreviation}"
-			                            th:utext="${state.abbreviation}">
-			
-			                     </option>
-			                </select>
-			            </div>
 			        </div>
 	            </div>
 

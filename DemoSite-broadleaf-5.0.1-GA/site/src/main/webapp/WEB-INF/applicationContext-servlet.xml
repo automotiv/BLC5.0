@@ -89,6 +89,9 @@
     </bean>
     
     <!-- This validator will additionally require state on shipping addresses -->
-    <bean id="blShippingInfoFormValidator" class="org.broadleafcommerce.core.web.checkout.validator.USShippingInfoFormValidator" />
+    <!-- Skipping US validation -->
+    <!-- <bean id="blShippingInfoFormValidator" class="org.broadleafcommerce.core.web.checkout.validator.USShippingInfoFormValidator" />  -->
+    
+    <bean id="blShippingInfoFormValidator" class="com.sptools.core.validator.INShippingInfoFormValidator" />
     
 </beans>

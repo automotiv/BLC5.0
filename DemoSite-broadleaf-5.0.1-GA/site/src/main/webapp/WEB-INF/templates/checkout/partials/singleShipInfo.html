@@ -78,16 +78,7 @@
 			                    <input type="text" th:field="*{address.city}" class="field100 clearable"
 			                           th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" />
 			                </div>
-							<div class="form25 grid_item">
-								<label for="state"><span th:utext="#{cart.cityState}">State</span></label>
-			                    <select id="state" th:field="*{address.stateProvinceRegion}" size="1" style="width: 100%;"
-			                        class="clearable" th:classappend="${#fields.hasErrors('address.stateProvinceRegion')}? 'fieldError'">
-			                        <option value="">--</option>
-			                        <option th:each="state : ${states}"
-			                                th:value="${state.abbreviation}"
-			                                th:utext="${state.abbreviation}"></option>
-			                    </select>
-			                   </div>
+							
 			        
 	            			<div class="form25 grid_item">
 			                    <label for="postal_code"><span th:utext="#{cart.postalCode}">Postal Code</span></label>
